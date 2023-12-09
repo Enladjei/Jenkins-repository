@@ -13,7 +13,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir("Jenkins-test")
                         {
                             git "https://github.com/Ohenix/Jenkins-repo.git"
                         }
@@ -23,9 +23,9 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform init'
-                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
-                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd Jenkins-test/ ; terraform init'
+                sh "pwd;cd Jenkins-test/ ; terraform plan -out tfplan"
+                sh 'pwd;cd Jenkins-test/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
